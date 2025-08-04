@@ -1,5 +1,6 @@
 import { useFruits } from '../hooks/useFruits.ts'
 import Nav from './Nav.tsx'
+import PageHeader from './PageHeader.tsx'
 
 function App() {
   const { data } = useFruits()
@@ -7,7 +8,7 @@ function App() {
   return (
     <>
       <div className="app">
-        <h1>PokeDB</h1>
+        <PageHeader />
         <Nav />
         <ul>{data && data.map((fruit) => <li key={fruit}>{fruit}</li>)}</ul>
       </div>
