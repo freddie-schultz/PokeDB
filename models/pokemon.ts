@@ -1,5 +1,4 @@
-export interface Pokemon {
-  id: number
+export interface PokemonData {
   species: number
   nickname: number
   level: number
@@ -10,4 +9,7 @@ export interface Pokemon {
   ivSpecialAttack: number
   ivSpecialDefense: number
   ivSpeed: number
+}
+export interface Pokemon extends PokemonData {
+  id: number
 }
