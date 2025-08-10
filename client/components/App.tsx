@@ -1,16 +1,20 @@
-import { useFruits } from '../hooks/useFruits.ts'
+import { Outlet } from 'react-router-dom'
 import Nav from './Nav.tsx'
 import PageHeader from './PageHeader.tsx'
 
 function App() {
-  const { data } = useFruits()
-
   return (
     <>
       <div className="app">
         <PageHeader />
-        <Nav />
-        <ul>{data && data.map((fruit) => <li key={fruit}>{fruit}</li>)}</ul>
+        <div id="page-container">
+          <div id="navbar">
+            <Nav />
+          </div>
+          <div id="main-outlet">
+            <Outlet />
+          </div>
+        </div>
       </div>
     </>
   )

@@ -4,3 +4,17 @@ html,
 body {
   font-family: 'Montserrat', sans-serif;
 }
+
+#navbar{
+  background-color: aquamarine;
+  flex: 1
+}
+
+#main-outlet{
+  background-color: aqua;
+  flex: 5
+}
+
+#page-container{
+  display: flex
+}
