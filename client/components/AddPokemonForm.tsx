@@ -24,7 +24,6 @@ export default function AddPokemonForm(props: Props) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
     setFormData({ ...formData, [event.target.id]: event.target.value })
-    console.log('Form data updated:', formData)
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
