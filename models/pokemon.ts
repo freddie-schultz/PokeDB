@@ -1,6 +1,6 @@
 export interface PokemonData {
-  species: number
-  nickname: number
+  species: string
+  nickname: string
   level: number
   nature: string
   ivHp: number

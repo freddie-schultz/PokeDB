@@ -1,21 +1,37 @@
 import React, { useState } from 'react'
+import { PokemonData } from '../../models/pokemon'
 
 const emptyForm = {
   nickname: '',
   species: '',
   level: 1,
   nature: '',
+  ivHp: 0,
+  ivAttack: 0,
+  ivDefense: 0,
+  ivSpecialAttack: 0,
+  ivSpecialDefense: 0,
+  ivSpeed: 0,
 }
 
-export default function AddPokemonForm() {
+interface Props {
+  submitForm: (newPokemon: PokemonData) => void
+}
+
+export default function AddPokemonForm(props: Props) {
   const [formData, setFormData] = useState(emptyForm)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault()
     setFormData({ ...formData, [event.target.id]: event.target.value })
+    console.log('Form data updated:', formData)
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    props.submitForm(formData)
+    setFormData(emptyForm)
   }
 
   return (
@@ -26,6 +42,7 @@ export default function AddPokemonForm() {
             Nickname:
             <input
               type="text"
+              id="nickname"
               name="nickname"
               required
               onChange={handleChange}
@@ -35,6 +52,7 @@ export default function AddPokemonForm() {
             Species:
             <input
               type="text"
+              id="species"
               name="species"
               required
               onChange={handleChange}
@@ -44,6 +62,7 @@ export default function AddPokemonForm() {
             Level:
             <input
               type="number"
+              id="level"
               name="level"
               min="1"
               max="100"
@@ -53,7 +72,13 @@ export default function AddPokemonForm() {
           </label>
           <label>
             Nature:
-            <input type="text" name="nature" required onChange={handleChange} />
+            <input
+              type="text"
+              id="nature"
+              name="nature"
+              required
+              onChange={handleChange}
+            />
           </label>
           <button type="submit">Add Pokemon</button>
         </form>

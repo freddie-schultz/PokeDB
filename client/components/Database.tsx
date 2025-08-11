@@ -1,14 +1,27 @@
 import { useState } from 'react'
-import { usePokemon } from '../hooks/usePokemon'
+import { useAddPokemon, usePokemon } from '../hooks/usePokemon'
 import PokemonTile from './PokemonTile'
 import AddPokemonForm from './AddPokemonForm'
+import { PokemonData } from '../../models/pokemon'
 
 export default function Database() {
   const { data: allPokemon, isError, isPending } = usePokemon()
   const [showForm, setShowForm] = useState(false)
+  const addPokemon = useAddPokemon()
 
   const handleToggleForm = () => {
     setShowForm(!showForm)
+  }
+
+  const handleSubmit = (newPokemon: PokemonData) => {
+    addPokemon.mutate(newPokemon, {
+      onSuccess: () => {
+        setShowForm(false)
+      },
+      onError: (error) => {
+        console.error('Failed to add Pokémon:', error)
+      },
+    })
   }
 
   if (isError) {
@@ -25,7 +38,7 @@ export default function Database() {
       <button onClick={handleToggleForm}>
         {showForm == false ? 'Show Form' : 'Hide Form'}
       </button>
-      {showForm && <AddPokemonForm />}
+      {showForm && <AddPokemonForm {...{ submitForm: handleSubmit }} />}
       {allPokemon.map((pokemon, i) => {
         return (
           <>

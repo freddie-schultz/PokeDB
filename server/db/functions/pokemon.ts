@@ -1,4 +1,4 @@
-import { Pokemon } from '../../../models/pokemon'
+import { Pokemon, PokemonData } from '../../../models/pokemon'
 import database from '../connection.ts'
 
 const pokemonKeys = [
@@ -15,9 +15,8 @@ const pokemonKeys = [
   'pokemon.iv_speed as ivSpeed ',
 ]
 
-function convertPokemonToSnakeCase(data: Pokemon) {
+function convertPokemonDataToSnakeCase(data: PokemonData) {
   return {
-    id: data.id,
     species: data.species,
     nickname: data.nickname,
     level: data.level,
@@ -35,4 +34,12 @@ export async function getAllPokemon(): Promise<Pokemon[]> {
   const results = await database('pokemon').select(pokemonKeys)
 
   return results
+}
+
+export async function addPokemon(pokemon: PokemonData): Promise<number> {
+  const results = await database('pokemon').insert(
+    convertPokemonDataToSnakeCase(pokemon),
+  )
+
+  return results[0]
 }

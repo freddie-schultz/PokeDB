@@ -15,4 +15,16 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.post('/', async (req, res) => {
+  try {
+    const newPokemon = req.body
+    const pokemonId = await db.addPokemon(newPokemon)
+
+    res.status(201).json({ id: pokemonId })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Failed to add Pokémon' })
+  }
+})
+
 export default router
