@@ -12,9 +12,16 @@ body {
 
 #main-outlet{
   background-color: aqua;
-  flex: 5
+  flex: 5;
+  padding: 20px;
 }
 
 #page-container{
   display: flex
+}
+
+.pokemon-tile {
+  border: 1px solid black;
+  padding: 5px;
+  margin: 5px
 }

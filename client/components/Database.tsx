@@ -1,4 +1,5 @@
 import { usePokemon } from '../hooks/usePokemon'
+import PokemonTile from './PokemonTile'
 
 export default function Database() {
   const { data: allPokemon, isError, isPending } = usePokemon()
@@ -14,13 +15,10 @@ export default function Database() {
   return (
     <>
       <h1>Pokemon Database</h1>
-      {allPokemon.map((pokemon) => {
+      {allPokemon.map((pokemon, i) => {
         return (
           <>
-            <div>
-              <h2>{pokemon.nickname}</h2>
-              <h3>{pokemon.species}</h3>
-            </div>
+            <PokemonTile key={i} {...pokemon} />
           </>
         )
       })}
