@@ -43,3 +43,7 @@ export async function addPokemon(pokemon: PokemonData): Promise<number> {
 
   return results[0]
 }
+
+export async function deletePokemon(id: number): Promise<void> {
+  await database('pokemon').where({ id }).del()
+}

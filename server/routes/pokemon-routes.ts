@@ -27,4 +27,20 @@ router.post('/', async (req, res) => {
   }
 })
 
+router.delete('/:id', async (req, res) => {
+  const id = parseInt(req.params.id, 10)
+
+  if (isNaN(id)) {
+    return res.status(400).json({ message: 'Invalid Pokémon ID' })
+  }
+
+  try {
+    await db.deletePokemon(id)
+    res.status(204).send()
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Failed to delete Pokémon' })
+  }
+})
+
 export default router

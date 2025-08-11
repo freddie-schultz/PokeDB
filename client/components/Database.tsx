@@ -18,7 +18,7 @@ export default function Database() {
     setShowForm(!showForm)
   }
 
-  const handleSubmit = (newPokemon: PokemonData) => {
+  const handleAddPokemon = (newPokemon: PokemonData) => {
     addPokemon.mutate(newPokemon, {
       onSuccess: () => {
         setShowForm(false)
@@ -29,7 +29,7 @@ export default function Database() {
     })
   }
 
-  const handleDelete = (id: number) => {
+  const handleDeletePokemon = (id: number) => {
     deletePokemon.mutate(id, {
       onError: (error) => {
         console.error('Failed to delete Pokémon:', error)
@@ -51,12 +51,20 @@ export default function Database() {
       <button onClick={handleToggleForm}>
         {showForm == false ? 'Add Pokemon' : 'Cancel'}
       </button>
-      {showForm && <AddPokemonForm {...{ submitForm: handleSubmit }} />}
+      {showForm && (
+        <AddPokemonForm
+          {...{
+            submitForm: handleAddPokemon,
+          }}
+        />
+      )}
       {allPokemon.map((pokemon, i) => {
         return (
-          <>
-            <PokemonTile key={i} {...pokemon} />
-          </>
+          <PokemonTile
+            key={`${pokemon.id}${i}`}
+            {...pokemon}
+            deletePokemon={handleDeletePokemon}
+          />
         )
       })}
     </>

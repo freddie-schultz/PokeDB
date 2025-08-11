@@ -1,6 +1,10 @@
 import { Pokemon } from '../../models/pokemon'
 
-export default function PokemonTile(props: Pokemon) {
+interface Props extends Pokemon {
+  deletePokemon: (id: number) => void
+}
+
+export default function PokemonTile(props: Props) {
   return (
     <>
       <div className="pokemon-tile">
@@ -15,6 +19,13 @@ export default function PokemonTile(props: Pokemon) {
         <p>Special Attack: {props.ivSpecialAttack}</p>
         <p>Special Defense: {props.ivSpecialDefense}</p>
         <p>Speed: {props.ivSpeed}</p>
+        <button
+          onClick={() => {
+            props.deletePokemon(props.id)
+          }}
+        >
+          Delete
+        </button>
       </div>
     </>
   )
