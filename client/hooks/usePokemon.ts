@@ -23,6 +23,13 @@ async function addPokemon(newPokemon: PokemonData) {
   return response.body as Pokemon
 }
 
+async function deletePokemon(id: number): Promise<void> {
+  const response = await request.delete(`/api/v1/pokemon/${id}`)
+  if (!response.ok) {
+    throw new Error('Failed to delete Pokémon')
+  }
+}
+
 export function usePokemon() {
   const query = useQuery<Pokemon[], Error>({
     queryKey: ['pokemon'],
@@ -36,7 +43,11 @@ export function useAddPokemon() {
   return usePokemonMutation(addPokemon)
 }
 
-export function usePokemonMutation<TData = unknown, TVariables = unknown>(
+export function useDeletePokemon() {
+  return usePokemonMutation(deletePokemon)
+}
+
+function usePokemonMutation<TData = unknown, TVariables = unknown>(
   mutationFn: MutationFunction<TData, TVariables>,
 ) {
   const queryClient = useQueryClient()

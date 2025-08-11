@@ -1,5 +1,9 @@
 import { useState } from 'react'
-import { useAddPokemon, usePokemon } from '../hooks/usePokemon'
+import {
+  useAddPokemon,
+  useDeletePokemon,
+  usePokemon,
+} from '../hooks/usePokemon'
 import PokemonTile from './PokemonTile'
 import AddPokemonForm from './AddPokemonForm'
 import { PokemonData } from '../../models/pokemon'
@@ -8,6 +12,7 @@ export default function Database() {
   const { data: allPokemon, isError, isPending } = usePokemon()
   const [showForm, setShowForm] = useState(false)
   const addPokemon = useAddPokemon()
+  const deletePokemon = useDeletePokemon()
 
   const handleToggleForm = () => {
     setShowForm(!showForm)
@@ -20,6 +25,14 @@ export default function Database() {
       },
       onError: (error) => {
         console.error('Failed to add Pokémon:', error)
+      },
+    })
+  }
+
+  const handleDelete = (id: number) => {
+    deletePokemon.mutate(id, {
+      onError: (error) => {
+        console.error('Failed to delete Pokémon:', error)
       },
     })
   }
