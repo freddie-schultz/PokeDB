@@ -36,7 +36,7 @@ export default function Database() {
     <>
       <h1>Pokemon Database</h1>
       <button onClick={handleToggleForm}>
-        {showForm == false ? 'Show Form' : 'Hide Form'}
+        {showForm == false ? 'Add Pokemon' : 'Cancel'}
       </button>
       {showForm && <AddPokemonForm {...{ submitForm: handleSubmit }} />}
       {allPokemon.map((pokemon, i) => {
