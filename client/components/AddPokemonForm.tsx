@@ -79,6 +79,67 @@ export default function AddPokemonForm(props: Props) {
               onChange={handleChange}
             />
           </label>
+          <h4>IVs:</h4>
+          <label>
+            HP:
+            <input
+              type="text"
+              id="ivHp"
+              name="ivHp"
+              required
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Attack:
+            <input
+              type="text"
+              id="ivAttack"
+              name="ivAttack"
+              required
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Defense:
+            <input
+              type="text"
+              id="ivDefense"
+              name="ivDefense"
+              required
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Special Attack:
+            <input
+              type="text"
+              id="ivSpecialAttack"
+              name="ivSpecialAttack"
+              required
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Special Defense:
+            <input
+              type="text"
+              id="ivSpecialDefense"
+              name="ivSpecialDefense"
+              required
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Speed:
+            <input
+              type="text"
+              id="ivSpeed"
+              name="ivSpeed"
+              required
+              onChange={handleChange}
+            />
+          </label>
           <button type="submit">Add Pokemon</button>
         </form>
       </div>
